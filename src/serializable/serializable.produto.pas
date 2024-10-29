@@ -2,6 +2,11 @@ unit serializable.produto;
 
 interface
 
+uses
+  System.Generics.Collections,
+  GBJSON.Attributes,
+  serializable.importacao;
+
 type
   TProduto = class
   private
@@ -27,6 +32,7 @@ type
     FCEST: String;
     FcBarra: String;
     FcBarraTrib: String;
+    FDI: TObjectList<TDI>;  
   public
     [JSONProp('item')]
     property nItem: Integer read FnItem write FnItem;
@@ -62,8 +68,23 @@ type
     property CEST: String read FCEST write FCEST;
     [JSONProp('codigoBarras')]
     property cBarra: String read FcBarra write FcBarra;
+    [JSONProp('DI')]
+    property DI: TObjectList<TDI> read FDI write FDI;    
   end;
 
 implementation
+
+{ TProduto }
+
+constructor TDI.Create;
+begin
+  FDI := TObjectList<TDI>.Create;  
+end;
+
+destructor TDI.Destroy;
+begin
+  FDI.Free;  
+  inherited;
+end;
 
 end.
