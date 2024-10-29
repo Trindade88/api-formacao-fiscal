@@ -5,7 +5,7 @@ interface
 uses
   System.Generics.Collections,
   GBJSON.Attributes,
-  serializable.obscont, serializable.adicionais;
+  serializable.adicionais;
 
 type
   TDI = class
